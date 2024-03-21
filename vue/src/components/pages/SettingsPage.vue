@@ -32,7 +32,10 @@
             Импорт
           </ElButton>
         </ElUpload>
-        <ElInput v-model="jwtToken" placeholder="Введите токен" />
+        <ElInput
+          v-model="jwtToken"
+          placeholder="Введите токен"
+        />
       </div>
     </section>
   </PageLayout>
