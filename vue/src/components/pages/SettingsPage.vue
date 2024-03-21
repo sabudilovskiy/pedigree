@@ -34,7 +34,7 @@
         </ElUpload>
       </div>
       <div>
-        <ElInput v-model="jwtToken" placeholder="Enter JWT Token" />
+        <ElInput v-model="jwtToken" placeholder="Введите токен" />
       </div>
     </section>
   </PageLayout>
@@ -74,7 +74,6 @@ export default {
         return this.getToken
       },
       set(value) {
-        console.log('test: ' + value)
         this.setToken(value)
       },
     },
