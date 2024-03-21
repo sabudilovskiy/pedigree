@@ -15,4 +15,4 @@ export function decryptPersons(persons, token){
       return i != null
     });
 }
-  
+ 
