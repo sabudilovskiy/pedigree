@@ -103,25 +103,25 @@ export default {
     ]),
     setFile (file) {
       const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const jsonData = JSON.parse(e.target.result);
-        let persons;
-        if (jsonData.persons && this.jwtToken) {
+      reader.onload = (e) => {
+        try {
+          const jsonData = JSON.parse(e.target.result);
+          let persons;
+          if (jsonData.persons && this.jwtToken) {
           persons = decryptPersons(jsonData.persons, this.jwtToken)
+          }
+          else if (jsonData.persons) {
+            persons = jsonData.persons
+          }
+          this.setPersons(persons);
+          this.setAccess(jsonData.access);
+          this.setMode(jsonData.mode);
         }
-        else if (jsonData.persons) {
-          persons = jsonData.persons
+        catch (e){
+          console.log(e)
         }
-        this.setPersons(persons);
-        this.setAccess(jsonData.access);
-        this.setMode(jsonData.mode);
-      }
-      catch (e){
-        console.log(e)
-      }
-    };
-    reader.readAsText(file.raw);
+      };
+      reader.readAsText(file.raw);
     },
   }
 }
