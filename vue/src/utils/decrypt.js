@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-export function decryptPersons(persons, token){
+export function decryptPersons(persons, token) {
   return persons.map((person) => {
       try {
         if (person.data){
