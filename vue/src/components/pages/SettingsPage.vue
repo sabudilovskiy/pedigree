@@ -110,7 +110,6 @@ export default {
           if (jsonData.persons) {
             this.setPersons(decryptPersons(jsonData.persons, this.jwtToken))
           }
-          this.setPersons(persons);
           this.setAccess(jsonData.access);
           this.setMode(jsonData.mode);
         }

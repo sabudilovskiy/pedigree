@@ -184,7 +184,12 @@ export default {
     },
     access: {
       get(){
-        return this.value.access
+        if (this.value.access){
+          return 'true'
+        }
+        else {
+          return 'false'
+        }
       },
       set(value){
         if (value == 'true'){
