@@ -81,7 +81,7 @@ export default {
     downloadRef () {
       return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
         persons: this.getAllPersons.map(person => {
-          if (this.getAccess && person.access) {
+          if (this.getAccess && person.access && this.jwtToken) {
             const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(person), this.jwtToken).toString();
             return { data: encryptedData };
           } else {
@@ -107,12 +107,8 @@ export default {
       reader.onload = (e) => {
         try {
           const jsonData = JSON.parse(e.target.result);
-          let persons;
-          if (jsonData.persons && this.jwtToken) {
-          persons = decryptPersons(jsonData.persons, this.jwtToken)
-          }
-          else if (jsonData.persons) {
-            persons = jsonData.persons
+          if (jsonData.persons) {
+            this.setPersons(decryptPersons(jsonData.persons, this.jwtToken))
           }
           this.setPersons(persons);
           this.setAccess(jsonData.access);

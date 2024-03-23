@@ -187,6 +187,12 @@ export default {
         return this.value.access
       },
       set(value){
+        if (value == 'true'){
+          value = true
+        }
+        else {
+          value = false
+        }
         this.emitFormData({
           access: value
         })

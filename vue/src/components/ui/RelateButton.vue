@@ -42,7 +42,7 @@ export default {
       return this.person.gender === 'male'
     },
     needHide(){
-      return this.person.access == true && this.getAccess == true
+      return this.person.access && this.getAccess
     },
     secondNameFormatted(){
       if (!this.person){
