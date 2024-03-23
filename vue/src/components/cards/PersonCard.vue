@@ -144,7 +144,7 @@ export default {
       }
     },
     needHide (){
-      return this.person.access && this.getAccess
+      return this.person.access == true && this.getAccess == true
     },
     photo (){
       if (!this.needHide){

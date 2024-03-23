@@ -73,7 +73,7 @@ export default {
       return defaultImage
     },
     needHide(){
-      return this.person.access && this.getAccess
+      return this.person.access == true && this.getAccess == true
     },
     secondName () {
       if (!this.needHide){
