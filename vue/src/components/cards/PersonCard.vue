@@ -118,15 +118,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons', [
+    ...mapGetters('persons',[
       'getPersonsByIds',
-      'filteredPersons'
+      'filteredPersons',
+      'getAvailablePersons'
     ]),
     ...mapGetters('settings', [
       'getAccess'
     ]),
-    activity () {
-      if (this.needHide) {
+    activity (){
+      if (this.needHide){
         return 'Информация скрыта'
       }
       return this.person.activity || 'Информации нет'
@@ -150,7 +151,9 @@ export default {
       if (!this.person.children) {
         return []
       }
-      return this.getPersonsByIds(this.person.children.map(i => i.child))
+      return this.getPersonsByIds(this.person.children.map(i => i.child)).filter((person) => {
+        return !person.removed
+      });
     },
     dieDate () {
       if (!this.person.dieDate) {
@@ -174,7 +177,9 @@ export default {
       return defaultImage
     },
     parents () {
-      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
+      return this.getAvailablePersons.filter((person) => {
+        return person.children && person.children.includes(this.person.id)
+      })
     },
     genderClass () {
       return `person-card__status-indicator__${ this.person.gender.toLowerCase() }`
