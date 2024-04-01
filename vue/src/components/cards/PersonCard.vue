@@ -118,7 +118,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',[
+    ...mapGetters('persons', [
       'getPersonsByIds',
       'filteredPersons',
       'getAvailablePersons'
@@ -126,8 +126,8 @@ export default {
     ...mapGetters('settings', [
       'getAccess'
     ]),
-    activity (){
-      if (this.needHide){
+    activity () {
+      if (this.needHide) {
         return 'Информация скрыта'
       }
       return this.person.activity || 'Информации нет'
